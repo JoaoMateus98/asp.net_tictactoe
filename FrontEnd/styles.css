@@ -14,6 +14,11 @@ body {
 h1 {
   width: max-content;
 }
+
+h2 {
+  margin-top: 100px;
+}
+
 #game-board-container {
   flex-grow: 1;
   width: 100%;
