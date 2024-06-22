@@ -1,21 +1,16 @@
 import Board from "./Board.js";
 import { baseURL } from "./main.js";
+import updateBoardUI from "./BoardUpdater.js";
 
-export default async function getServerBoard() {
-  let serverBoard = await fetchServerBoard();
+export default async function getServerTiles() {
+  let serverTiles = await fetchServerTiles();
 
-  let topRow = serverBoard.top;
-  let middleRow = serverBoard.middle;
-  let bottomRow = serverBoard.bottom;
-
-  let clientBoard = new Board(topRow, middleRow, bottomRow);
-
-  console.log(clientBoard);
+  updateBoardUI(serverTiles);
 }
 
-async function fetchServerBoard() {
+async function fetchServerTiles() {
   const url = `${baseURL}/boardState`;
-  let serverBoard = await fetch(url, {
+  let serverTiles = await fetch(url, {
     method: "GET",
     mode: "cors",
     headers: {
@@ -28,5 +23,5 @@ async function fetchServerBoard() {
     return response.json();
   });
 
-  return serverBoard;
+  return serverTiles;
 }

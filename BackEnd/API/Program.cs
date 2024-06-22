@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using API;
 using API.Enpoints;
 
 const string AllowCORSPolicy = "MyPolicy"; // this can be called anything. its an arbitrary name for the policy
@@ -26,6 +27,8 @@ app.MapPost("/test", IResult (Person person) =>
 });
 
 app.MapGet("/boardState", IResult () => BoardState.GetBoardState());
+
+app.MapPost("/boardState", IResult (Board board) => BoardState.UpdateBoardState(board));
 
 app.Run();
 record Person(string FirstName, string LastName);

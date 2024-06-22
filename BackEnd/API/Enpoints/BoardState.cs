@@ -7,13 +7,33 @@ public static class BoardState
 {
     public static IResult GetBoardState()
     {
-        using(var sr = new StreamReader(File.OpenRead(@"SaveFile.json")))
+        string fileContent = File.ReadAllText(@"SaveFile.json");
+
+        SaveFile? saveFile = JsonSerializer.Deserialize<SaveFile>(fileContent);
+
+        return TypedResults.Ok(saveFile?.Board);
+    }
+
+    public static IResult UpdateBoardState(Board board)
+    {
+        var fileContent = File.ReadAllText(@"SaveFile.json");
+
+        SaveFile? saveFile = JsonSerializer.Deserialize<SaveFile>(fileContent);
+
+        if (saveFile is not null) 
         {
-            string fileContent = sr.ReadToEnd();
+            saveFile.Board = board;
 
-            SaveFile? saveFile = JsonSerializer.Deserialize<SaveFile>(fileContent);
+            JsonSerializerOptions options = new()
+            {
+                WriteIndented = true,
+            };
 
-            return TypedResults.Ok(saveFile?.BoardLastState);
+            string serializedSaveData = JsonSerializer.Serialize(saveFile, options);
+
+            File.WriteAllText(@"SaveFile.json", serializedSaveData);
         }
+
+        return TypedResults.Ok(saveFile?.Board);
     }
 }

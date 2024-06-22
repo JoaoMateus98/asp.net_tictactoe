@@ -1,3 +1,8 @@
 ﻿namespace API;
 
-public record SaveFile(int PlayerWins, int BotWins, Board BoardLastState);
+public record SaveFile
+{
+    public int PlayerWins { get; set; }
+    public int BotWins { get; set; }
+    public Board? Board { get; set; }
+}
