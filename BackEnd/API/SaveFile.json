@@ -2,8 +2,8 @@
   "PlayerWins": 0,
   "BotWins": 0,
   "BoardLastState": {
-    "Top": [ 0, 0, 0 ],
-    "Middle": [ 0, 0, 0 ],
-    "Bottom": [ 0, 0, 0 ]
+    "Top": [ 1, 0, 0 ],
+    "Middle": [ 0, 2, 0 ],
+    "Bottom": [ 0, 0, 3 ]
   }
 }

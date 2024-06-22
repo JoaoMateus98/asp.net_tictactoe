@@ -1,14 +1,21 @@
+import Board from "./Board.js";
 import { baseURL } from "./main.js";
 
-export default async function getBoardState() {
-  let boardState = await fetchBoardState();
+export default async function getServerBoard() {
+  let serverBoard = await fetchServerBoard();
 
-  console.log(boardState);
+  let topRow = serverBoard.top;
+  let middleRow = serverBoard.middle;
+  let bottomRow = serverBoard.bottom;
+
+  let clientBoard = new Board(topRow, middleRow, bottomRow);
+
+  console.log(clientBoard);
 }
 
-async function fetchBoardState() {
+async function fetchServerBoard() {
   const url = `${baseURL}/boardState`;
-  const boardState = await fetch(url, {
+  let serverBoard = await fetch(url, {
     method: "GET",
     mode: "cors",
     headers: {
@@ -21,5 +28,5 @@ async function fetchBoardState() {
     return response.json();
   });
 
-  return boardState;
+  return serverBoard;
 }

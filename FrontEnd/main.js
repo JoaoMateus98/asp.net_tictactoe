@@ -1,6 +1,6 @@
 import handlePlayerMove from "./moveHandler.js";
 import getBoardState from "./boardStateHandler.js";
-export const baseURL = "https://localhost:7000";
+import Board from "./Board.js";
 
 (id) => handlePlayerMove(id);
 
@@ -9,3 +9,7 @@ export const baseURL = "https://localhost:7000";
 // Make the functions available globally
 window.handlePlayerMove = handlePlayerMove;
 window.getBoardState = getBoardState;
+
+export const baseURL = "https://localhost:7000";
+export let clientBoard = new Board([], [], [], true); // create new board on page load
+console.log(clientBoard);
