@@ -3,15 +3,15 @@
   "BotWins": 0,
   "Board": {
     "tiles": {
-      "tile1": 1,
+      "tile1": 0,
       "tile2": 0,
-      "tile3": 0,
+      "tile3": 2,
       "tile4": 0,
       "tile5": 1,
       "tile6": 0,
       "tile7": 0,
-      "tile8": 0,
-      "tile9": 1
+      "tile8": 1,
+      "tile9": 2
     }
   }
 }

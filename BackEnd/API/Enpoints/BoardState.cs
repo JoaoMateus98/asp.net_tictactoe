@@ -5,18 +5,27 @@ namespace API.Enpoints;
 
 public static class BoardState
 {
-    public static IResult GetBoardState()
+    public static async Task<IResult> GetBoardState()
     {
-        string fileContent = File.ReadAllText(@"SaveFile.json");
+        string fileContent;
+        using (StreamReader sr = new StreamReader(new FileStream(@"SaveFile.json", FileMode.Open, FileAccess.Read, FileShare.None)))
+        {
+            fileContent = await sr.ReadToEndAsync();
+        }
 
         SaveFile? saveFile = JsonSerializer.Deserialize<SaveFile>(fileContent);
 
         return TypedResults.Ok(saveFile?.Board);
     }
 
-    public static IResult UpdateBoardState(Board board)
+    public static async Task<IResult> UpdateBoardState(Board board)
     {
-        var fileContent = File.ReadAllText(@"SaveFile.json");
+        string fileContent;
+
+        using (StreamReader sr = new StreamReader(new FileStream(@"SaveFile.json", FileMode.Open, FileAccess.Read, FileShare.None)))
+        {
+            fileContent = await sr.ReadToEndAsync();
+        }
 
         SaveFile? saveFile = JsonSerializer.Deserialize<SaveFile>(fileContent);
 

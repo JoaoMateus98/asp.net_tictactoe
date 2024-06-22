@@ -3,7 +3,7 @@
 public record Board
 {
     public Tiles tiles { get; set; }
-    public record Tiles
+    public record Tiles 
     {
         public int tile1 { get; set; }
         public int tile2 { get; set; }
@@ -14,6 +14,7 @@ public record Board
         public int tile7 { get; set; }
         public int tile8 { get; set; }
         public int tile9 { get; set; }
+        
     }
 }
 

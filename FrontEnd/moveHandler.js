@@ -11,7 +11,9 @@ export default async function handlePlayerMove(id) {
 
   currentBoard = createBoardInstance();
 
-  updateServerBoard(currentBoard);
+  await updateServerBoard(currentBoard);
+
+  let botResponse = await getBotMove();
 }
 
 // check if the tile is empty
@@ -72,25 +74,18 @@ async function updateServerBoard(board) {
 }
 
 async function getBotMove() {
-  let data = {
-    firstName: "Joao",
-    lastName: "Dos Santos",
-  };
-
-  const url = `${baseURL}/test`;
+  const url = `${baseURL}/aiMove`;
   const response = await fetch(url, {
-    method: "POST",
+    method: "GET",
     mode: "cors",
     headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
+      Accept: "text/html",
     },
-    body: JSON.stringify(data),
   }).then((response) => {
     if (!response.ok) {
       throw new Error(response.error);
     }
-    return response.json();
+    return response;
   });
 
   return response;

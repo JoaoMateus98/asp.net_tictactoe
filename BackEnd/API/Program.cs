@@ -21,14 +21,15 @@ var app = builder.Build();
 
 app.UseCors(AllowCORSPolicy);
 
-app.MapPost("/test", IResult (Person person) =>
-{
-    return Results.Ok(person);
-});
 
-app.MapGet("/boardState", IResult () => BoardState.GetBoardState());
 
-app.MapPost("/boardState", IResult (Board board) => BoardState.UpdateBoardState(board));
+app.MapGet("/aiMove", Task<IResult> () => AI.MakeMove());
+
+app.MapGet("/newGame", Task<IResult> () => NewGame.ClearBoard());
+
+app.MapGet("/boardState", Task<IResult> () => BoardState.GetBoardState());
+
+app.MapPost("/boardState", Task<IResult> (Board board) => BoardState.UpdateBoardState(board));
 
 app.Run();
 record Person(string FirstName, string LastName);
