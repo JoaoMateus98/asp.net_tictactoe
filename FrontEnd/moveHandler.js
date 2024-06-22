@@ -1,8 +1,4 @@
-function getBoardState() {
-  console.log("clicked");
-}
-
-async function handleClick(id) {
+export default async function handlePlayerMove(id) {
   clearTiles();
 
   let button = document.getElementById(id);
@@ -41,14 +37,4 @@ async function GetBotMove() {
   });
 
   return response;
-}
-
-class GameState {
-  constructor(board) {
-    this.board = [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
-    ]; // 0 = empty, 1 = player, 2 = bot
-  }
 }
