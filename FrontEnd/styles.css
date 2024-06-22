@@ -8,7 +8,10 @@ body {
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+
+  background-color: rgb(228, 225, 225);
 }
 
 h1 {
@@ -16,11 +19,19 @@ h1 {
 }
 
 h2 {
-  margin-top: 100px;
+  margin-top: 50px;
+}
+
+#board-state {
+  margin-top: 50px;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 #game-board-container {
-  flex-grow: 1;
+  margin-top: 100px;
   width: 100%;
 
   display: flex;
@@ -39,4 +50,5 @@ h2 {
   border-style: solid;
   border-width: 2px;
   border-color: brown;
+  background-color: white;
 }
