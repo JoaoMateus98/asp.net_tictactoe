@@ -1,15 +1,17 @@
 import Board from "./Board.js";
-import { baseURL, clientBoard } from "./main.js";
+import { baseURL } from "./main.js";
+import getServerTiles from "./boardStateHandler.js";
+
+let currentBoard;
 
 export default async function handlePlayerMove(id) {
   if (!isValidMove(id)) return;
 
   appendX(id);
 
-  let clientBoard = createClientBoard();
+  currentBoard = createBoardInstance();
 
-  let response = await GetBotMove();
-  console.log(response);
+  updateServerBoard(currentBoard);
 }
 
 // check if the tile is empty
@@ -53,7 +55,23 @@ function createBoardInstance() {
   return clientBoard;
 }
 
-async function GetBotMove() {
+async function updateServerBoard(board) {
+  const url = `${baseURL}/boardState`;
+  await fetch(url, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(board),
+  }).then((response) => {
+    if (!response.status === 201) {
+      throw new Error(response.error);
+    }
+  });
+}
+
+async function getBotMove() {
   let data = {
     firstName: "Joao",
     lastName: "Dos Santos",

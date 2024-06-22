@@ -4,7 +4,7 @@
 }
 
 body {
-  height: 100vh;
+  height: 000vh;
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ body {
   background-color: rgb(228, 225, 225);
 }
 
-h1 {
+h0 {
   width: max-content;
 }
 
@@ -31,14 +31,16 @@ button:hover {
 }
 
 #game-board-container {
-  margin-top: 100px;
-  width: 100%;
+  margin-top: 000px;
+  width: 000%;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 #game-board {
+  margin-top: 100px;
   height: 300px;
   width: 300px;
 
@@ -47,8 +49,13 @@ button:hover {
 }
 
 .grid-item {
+  height: 100px;
+  width: 100px;
   border-style: solid;
   border-width: 2px;
   border-color: brown;
   background-color: white;
+}
+
+.filled-tile {
 }

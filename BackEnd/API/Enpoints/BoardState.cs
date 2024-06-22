@@ -34,6 +34,6 @@ public static class BoardState
             File.WriteAllText(@"SaveFile.json", serializedSaveData);
         }
 
-        return TypedResults.Ok(saveFile?.Board);
+        return TypedResults.Created("/boardState");
     }
 }
