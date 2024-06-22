@@ -1,8 +1,13 @@
+import { baseURL } from "./main.js";
+
 export default async function handlePlayerMove(id) {
   clearTiles();
 
   let button = document.getElementById(id);
   button.style.backgroundColor = "red";
+
+  let response = await GetBotMove();
+  console.log(response);
 }
 
 function clearTiles() {
@@ -19,11 +24,10 @@ async function GetBotMove() {
     lastName: "Dos Santos",
   };
 
-  const url = "https://localhost:7000/test";
+  const url = `${baseURL}/test`;
   const response = await fetch(url, {
     method: "POST",
     mode: "cors",
-    cache: "no-cache",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
