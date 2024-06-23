@@ -23,13 +23,13 @@ app.UseCors(AllowCORSPolicy);
 
 
 
-app.MapGet("/aiMove", Task<IResult> () => AI.MakeMove());
+app.MapGet("/aiMove", AI.MakeMove);
 
-app.MapGet("/newGame", Task<IResult> () => NewGame.ClearBoard());
+app.MapGet("/newGame", NewGame.ClearBoard);
 
-app.MapGet("/boardState", Task<IResult> () => BoardState.GetBoardState());
+app.MapGet("/boardState", BoardState.GetBoardState);
 
-app.MapPost("/boardState", Task<IResult> (Board board) => BoardState.UpdateBoardState(board));
+app.MapPost("/boardState", BoardState.UpdateBoardState);
 
 app.Run();
 record Person(string FirstName, string LastName);
